@@ -1,47 +1,27 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Finding Lane Lines on the Road**
-
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
-
-### Reflection
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+The goal of the project is to develop a pipeline that can be used to detect lane lines in an image/video.  The pipeline is written in Python using OpenCV. The project consists of two files. The file P1.ipynb with the code and README.md with the description.
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+My pipeline consisted of the following steps: 
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
-
+- Converting image to grayscale
+- Appllying Gaussian Blur to the image
+- Applying Canny edge detection
+- Filter out region of interest
+- Houghlines outputs a list of line segments
+- I modified the draw_lies funciton by sorting the lines by slope (left/right). Then it calculates the mean. At the end the weighted average over time is used to avoid flickering.
 
 ### 2. Identify potential shortcomings with your current pipeline
 
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+One potential shortcoming is that it only works well for straight lines. The Pipeline also has problems detecting lines with different colors like shadows etc.
+Another shortcoming is roads with ascending and descending slopes, because the algorithm assumes the visible end near the middle oft the image.
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+A possible improvement would be to use Plyfit to better detect curvy lane lines.
+Another potential improvement could be to use variable Parameters for region of interest, gaussian smoothing etc. because they may change for different driving situations.
+There might be better algorithms to detect lane lines with different color (shadows, etc.)
